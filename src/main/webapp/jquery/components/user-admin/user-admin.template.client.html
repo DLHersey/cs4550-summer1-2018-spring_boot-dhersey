@@ -6,11 +6,7 @@
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
-
-
-	<script
-	  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
 	<script src="../services/user.service.client.js"></script>
 	<script src="user-admin.controller.client.js"></script>
 	</head>
@@ -43,7 +39,8 @@
 					</tr>
 				</thead>
 				<tbody class="wbdv-tbody">
-				    <tr class="wbdv-template wbdv-user wbdv-hidden">
+				    <!--tr class="wbdv-template wbdv-user wbdv-hidden"-->
+				    <tr class="userRowTemplate"> 
 				      <td class="wbdv-username">ada</td>
 				      <td>&nbsp;</td>
 				      <td class="wbdv-first-name">Ada</td>
@@ -57,5 +54,10 @@
 				</tbody>
 			</table>
 		</div>
+
+		<script
+		  src="https://code.jquery.com/jquery-3.3.1.min.js"
+		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		  crossorigin="anonymous"></script>
 	</body>
 </html>
