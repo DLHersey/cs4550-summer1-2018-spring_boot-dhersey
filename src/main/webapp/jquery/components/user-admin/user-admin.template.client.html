@@ -3,17 +3,27 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>User Administration</title>
-
+	
+	<!-- Bootstrap -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   
-	<script src="../services/user.service.client.js"></script>
+	<!-- JQuery -->
+  	<script
+    	src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+	<!--script src="../services/user.service.client.js"></script-->
 	<script src="user-admin.controller.client.js"></script>
 	</head>
 
 	<body>
 		<div class="container">
-			<h1>User Admin</h1>
+			<h1 id="title">User Admin</h1>
+
 			<table class="table">
 			  	<thead>
 				    <tr>
@@ -22,9 +32,9 @@
 				      <th>First Name</th>
 				      <th>Last Name</th>
 				      <th>Role</th>
-				      <th>&nbsp;</th>
+				      <th></th>
 				    </tr>
-					<tr class="wbdv-form">
+					<tr>
 					  <td><input id="usernameFld" class="form-control" placeholder="Username" /></td>
 					  <td><input id="passwordFld" class="form-control" type="Password" /></td>
 					  <td><input id="firstNameFld" class="form-control" placeholder="First Name" /></td>
@@ -34,19 +44,18 @@
 					    <option value="STUDENT">Student</option>
 					  </select></td>
 					  <td>
-					  	<button class="btn btn-success">Submit</button>
+					  	<button id="createUser" class="btn btn-success">Submit</button>
 					  </td>
 					</tr>
 				</thead>
-				<tbody class="wbdv-tbody">
-				    <!--tr class="wbdv-template wbdv-user wbdv-hidden"-->
+				<tbody>
 				    <tr class="userRowTemplate"> 
-				      <td class="wbdv-username">ada</td>
-				      <td>&nbsp;</td>
-				      <td class="wbdv-first-name">Ada</td>
-				      <td class="wbdv-last-name">Lovelace</td>
-				      <td class="wbdv-role">FACULTY</td>
-				      <td class="wbdv-actions" style="float: right;" nowrap>
+				      <td class="username">ada</td>
+				      <td></td>
+				      <td class="first-name">Ada</td>
+				      <td class="last-name">Lovelace</td>
+				      <td class="role">Faculty</td>
+				      <td class="actions" style="float: right;" nowrap>
 				      	<button class="btn btn-danger">Delete</button>
 				        <button class="btn">Edit</button>
 				      </td>
