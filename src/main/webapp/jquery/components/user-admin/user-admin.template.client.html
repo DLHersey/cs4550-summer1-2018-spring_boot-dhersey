@@ -16,7 +16,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
-	<!--script src="../services/user.service.client.js"></script-->
+	<script src="../../services/user.service.client.js"></script>
 	<script src="user-admin.controller.client.js"></script>
 	</head>
 
@@ -34,14 +34,14 @@
 				      <th>Role</th>
 				      <th></th>
 				    </tr>
-					<tr>
+					<tr class="userForm">
 					  <td><input id="usernameFld" class="form-control" placeholder="Username" /></td>
 					  <td><input id="passwordFld" class="form-control" type="Password" /></td>
 					  <td><input id="firstNameFld" class="form-control" placeholder="First Name" /></td>
 					  <td><input id="lastNameFld" class="form-control" placeholder="Last Name" /></td>
 					  <td><select id="roleFld" class="form-control">
-					  	<option value="FACULTY">Faculty</option>
-					    <option value="STUDENT">Student</option>
+					  	<option value="Faculty">Faculty</option>
+					    <option value="Student">Student</option>
 					  </select></td>
 					  <td>
 					  	<button id="createUser" class="btn btn-success">Submit</button>
@@ -50,23 +50,19 @@
 				</thead>
 				<tbody>
 				    <tr class="userRowTemplate"> 
-				      <td class="username">ada</td>
+				      <td class="username">JD</td>
 				      <td></td>
-				      <td class="first-name">Ada</td>
-				      <td class="last-name">Lovelace</td>
-				      <td class="role">Faculty</td>
+				      <td class="first-name">John</td>
+				      <td class="last-name">Doe</td>
+				      <td class="role">Student</td>
 				      <td class="actions" style="float: right;" nowrap>
-				      	<button class="btn btn-danger">Delete</button>
-				        <button class="btn">Edit</button>
+				      	<button class="delete btn btn-danger">Delete</button>
+				        <button class="edit btn">Edit</button>
 				      </td>
 				   </tr>
 				</tbody>
 			</table>
 		</div>
 
-		<script
-		  src="https://code.jquery.com/jquery-3.3.1.min.js"
-		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		  crossorigin="anonymous"></script>
 	</body>
 </html>

@@ -4,12 +4,12 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
-    this.login = login();
+    //this.login = login();
     this.url = '/api/user';
-    this.login = '/api/login';
+    //this.login = '/api/login';
     var self = this;
 
-    function login(username, password) {
+    /*function login(username, password) {
         return fetch(self.login, {
             method: 'post',
             body: JSON.stringify({username:username, password: password}),
@@ -17,7 +17,7 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         });
-    }
+    }*/
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
