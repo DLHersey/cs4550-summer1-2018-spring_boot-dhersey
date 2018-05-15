@@ -1,6 +1,7 @@
 package com.example.myapp.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,11 @@ public class UserService {
 	@Autowired
 	UserRepository repository;
 	
+	@DeleteMapping("/api/user/{userId}")
+	public void deleteUser(@PathVariable("userId") int id) {
+		repository.deleteById(id);
+	}
+	
 	@PostMapping("/api/user")
 	public User createUser(@RequestBody User user) {
 		return repository.save(user);
@@ -29,8 +35,13 @@ public class UserService {
 		return (List<User>) repository.findAll();
 	}
 	
-	@DeleteMapping("/api/user/{userId}")
-	public void deleteUser(@PathVariable("userId") int id) {
-		repository.deleteById(id);
+	
+	@GetMapping("/api/user/{userId}")
+	public User findUserById(@PathVariable("userId") int userId) {
+		Optional<User> data = repository.findById(userId);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
 	}
 }
