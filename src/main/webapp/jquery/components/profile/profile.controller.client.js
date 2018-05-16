@@ -7,6 +7,7 @@
     var $updateBtn;
     var userService = new UserServiceClient();
 
+
     function init() {
         $staticEmail = $("#staticEmail");
         $firstName = $("#firstName");
@@ -14,7 +15,7 @@
         $updateBtn = $("#updateBtn")
             .click(updateUser);
 
-        findUserById(12);
+        findUserById(22);
     }
 
     function updateUser() {
@@ -24,7 +25,7 @@
         };
 
         userService
-            .updateUser(12, user)
+            .updateUser(22, user)
             .then(success);
     }
 
@@ -46,6 +47,6 @@
         console.log(user);
         $staticEmail.val(user.username);
         $firstName.val(user.firstName);
-        $lastName.val(user.lasteName);
+        $lastName.val(user.lastName);
     }
 })()

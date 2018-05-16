@@ -3,11 +3,15 @@ package com.example.myapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +39,10 @@ public class UserService {
 		return (List<User>) repository.findAll();
 	}
 	
+	@PostMapping("/api/login")
+	public List<User> login(@RequestBody User user) {
+		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	}
 	
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(@PathVariable("userId") int userId) {
@@ -43,5 +51,17 @@ public class UserService {
 			return data.get();
 		}
 		return null;
+	}
+	
+	@PutMapping("/api/user/{userId}")
+	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) throws EntityNotFoundException {
+		Optional<User> data = repository.findById(userId);
+		if(data.isPresent()) {
+			User user = data.get();
+			user.setFirstName(newUser.getFirstName());
+			repository.save(user);
+			return user;
+		}
+		throw new EntityNotFoundException("user not found"); 
 	}
 }

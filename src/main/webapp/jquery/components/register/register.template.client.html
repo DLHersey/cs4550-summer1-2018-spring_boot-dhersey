@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>User Sign-up</title>
+	
+	<!-- Bootstrap -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Template Styling -->
+	<link href="https://getbootstrap.com/docs/4.1/examples/floating-labels/floating-labels.css" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
+	<!-- JQuery -->
+  	<script
+    	src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+	<script src="../../services/user.service.client.js"></script>
+	<!--script src="register.controller.client.js"></script-->
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin card">
+	    	<div class="text-center mb-4">
+				<h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+			</div>
+	    	<div class="form-label-group" style="padding-bottom: 20px">
+				<input type="username" id="usernameFld" class="form-control" placeholder="Username" required="" autofocus="">
+		        <label for="usernameFld" class="text-left">Username</label>
+			</div>
+	    	<div class="form-label-group">
+				<input type="password" id="passwordFld" class="form-control" placeholder="Password" required="">
+				<label for="passwordFld" class="text-left">Password</label>
+			</div>
+			<div class="form-label-group" style="padding-bottom: 10px">
+				<input type="password" id="verifyPasswordFld" class="form-control" placeholder="Verify Password" required="">
+				<label for="verifyPasswordFld" class="text-left">Verify Password</label>
+			</div>
+	    	<div class="form-label-group">
+	    		<button id="registerBtn" class="btn btn-lg btn-primary btn-block">Register</button>
+	    	</div>
+		</form>
+	</body>
+</html>
