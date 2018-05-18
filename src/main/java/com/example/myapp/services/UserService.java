@@ -56,8 +56,13 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		Optional<User> data = repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		if(data.isPresent()) {
+			session.setAttribute("userId", user.getId());
+			return user;
+		}
+		return null;
 	}
 	
 	@GetMapping("/api/user/{userId}")

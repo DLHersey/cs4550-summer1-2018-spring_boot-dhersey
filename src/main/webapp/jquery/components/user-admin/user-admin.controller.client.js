@@ -61,6 +61,13 @@
             .findUserById()
             .then(renderUser);
     }
+
+    function selectUser() {
+        userService.findUserById(userId)
+            .then(function(response) {
+                renderUser(response);
+            });
+    }
     
     function updateUser(user) {
         //Posts user information from the form to the database and triggeres a renderUsers.
@@ -70,18 +77,12 @@
     }
     
     function renderUser(user) {
-        var username = $('#usernameFld');
-        var password = $('#passwordFld');
-        var firstName = $('#firstNameFld');
-        var lastName = $('#lastNameFld');
-        var role = $('#roleFld').val();
         //populates form with a user's information pulled from the server.
-        userForm.empty();
-        usernameFld.html(user.username);
-        passwordFld.html(user.password);
-        firstNameFld.html(user.firstName);
-        lastNameFld.html(user.lastName);
-        roleFld.html(user.role);
+        userForm.find('#usernameFld').html(user.username);
+        userForm.find('#passwordFld').html(user.password);
+        userForm.find('#firstNameFld').html(user.firstName);
+        userForm.find('#lastNameFld').html(user.lastName);
+        userForm.find('#roleFld').html(user.role);
     }
     
     function renderUsers(users) {
@@ -134,7 +135,6 @@
             .attr('id');
 
         userService.profileRedirect(userId);
-        
     }
 
 })();

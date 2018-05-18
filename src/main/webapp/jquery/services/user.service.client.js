@@ -7,9 +7,11 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.login = login;
     this.register = register;
+    this.logout = logout;
     this.url = '/api/user';
     this.loginUrl = '/api/login';
     this.registerUrl = '/api/register';
+    this.logoutUrl = '/api/logout';
     this.profileRedirect = profileRedirect;
     var self = this;
 
@@ -22,6 +24,18 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         });
+    }
+
+    function logout() {
+        return fetch(self.logout, {
+            method: 'post',
+            credentials: "same-origin",
+
+        })
+            .then(function(response){
+                profile = "../login/login.template.client.html";
+                $(location).attr("href", );      
+            })
     }
 
     function updateUser(userId, user) {
@@ -102,12 +116,11 @@ function UserServiceClient() {
                 profileRedirect(responseJson.id);
             }
         });
-}
+    }
 
     function profileRedirect(userId) {
         // redirect to profile page for new user
         profile = "../profile/profile.template.client.html?userId=" + userId;
         $(location).attr("href", profile);        
     }
-
 }

@@ -5,6 +5,9 @@
     $(main);
 
     function main() {
+    	$usernameFld = $('#usernameFld');
+    	$passwordFld = $('#passwordFld');
+
     	loginBtn = $('#loginBtn');
 
     	$('#loginBtn').click(login);
