@@ -3,8 +3,10 @@ package com.example.myapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +34,20 @@ public class UserService {
 	@PostMapping("/api/user")
 	public User createUser(@RequestBody User user) {
 		return repository.save(user);
+	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		Optional<User> data = repository.findUserByUsername(user.getUsername());
+		if(data.isPresent()) { /* Username ALREADY exists */
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return null;
+		}
+		else {/* Username DOES NOT exist */
+			User nUser = createUser(user);
+			session.setAttribute("user", nUser); 
+			return nUser;
+		}
 	}
 	
 	@GetMapping("/api/user")

@@ -5,6 +5,8 @@
     var $firstName;
     var $lastName;
     var $updateBtn;
+    var url;
+    var displayUserId;
     var userService = new UserServiceClient();
 
 
@@ -15,7 +17,11 @@
         $updateBtn = $("#updateBtn")
             .click(updateUser);
 
-        findUserById(22);
+        url = window.location.href;
+        displayUserId =  $(location).attr('search').substring(8,);
+
+        console.log(displayUserId);
+        findUserById(displayUserId);
     }
 
     function updateUser() {
@@ -25,7 +31,7 @@
         };
 
         userService
-            .updateUser(22, user)
+            .updateUser(displayUserId, user)
             .then(success);
     }
 

@@ -61,11 +61,6 @@
             .findUserById()
             .then(renderUser);
     }
-
-    function selectUser() {
-
-        //.then(renderUser(this))
-    }
     
     function updateUser(user) {
         //Posts user information from the form to the database and triggeres a renderUsers.
@@ -138,6 +133,7 @@
             .parent()
             .attr('id');
 
+        userService.profileRedirect(userId);
         
     }
 

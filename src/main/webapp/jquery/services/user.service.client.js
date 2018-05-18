@@ -3,22 +3,27 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
+    this.findUserByUsernme;
     this.updateUser = updateUser;
-//    this.login = login();
+    this.login = login;
+    this.register = register;
     this.url = '/api/user';
-//    this.login = '/api/login';
+    this.loginUrl = '/api/login';
+    this.registerUrl = '/api/register';
+    this.profileRedirect = profileRedirect;
     var self = this;
 
-/*    function login(username, password) {
+    function login(username, password) {
         return fetch(self.login, {
             method: 'post',
+            credentials: "same-origin",
             body: JSON.stringify({username:username, password: password}),
             headers: {
                 'content-type': 'application/json'
             }
         });
     }
-*/
+
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
             method: 'put',
@@ -38,6 +43,13 @@ function UserServiceClient() {
 
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
+            .then(function(response){
+                return response.json();
+            });
+    }
+
+    function findUserByUsernme(username) {
+        return fetch(self.url + '/' + username)
             .then(function(response){
                 return response.json();
             });
@@ -65,4 +77,37 @@ function UserServiceClient() {
             }
         });
     }
+
+    function register(user) {
+        return fetch(self.registerUrl, {
+            method: 'post',
+            credentials: "same-origin",
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.status == '409') {
+                return null;
+            } else {
+                return response.json();
+            }
+        })
+        .then(function(responseJson) {
+            if (responseJson === null) {
+                alert('Username is already taken.')
+            }
+            else {
+                profileRedirect(responseJson.id);
+            }
+        });
+}
+
+    function profileRedirect(userId) {
+        // redirect to profile page for new user
+        profile = "../profile/profile.template.client.html?userId=" + userId;
+        $(location).attr("href", profile);        
+    }
+
 }
