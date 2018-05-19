@@ -5,8 +5,6 @@
     $(main);
 
     function main() {
-    	$usernameFld = $('#usernameFld');
-    	$passwordFld = $('#passwordFld');
 
     	loginBtn = $('#loginBtn');
 
@@ -14,9 +12,14 @@
     }
 
     function login() {
-    	//userService
-    	//	.login()
-    	//	.then()
+    	$usernameFld = $('#usernameFld').val();
+    	$passwordFld = $('#passwordFld').val();
+    	
+    	userService
+    		.login($usernameFld, $passwordFld)
+    		.then(function(responseJson){
+    			userService.profileRedirect(responseJson.id);
+    		});
     }
 
 })();

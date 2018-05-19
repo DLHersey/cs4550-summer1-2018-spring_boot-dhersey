@@ -16,26 +16,36 @@ function UserServiceClient() {
     var self = this;
 
     function login(username, password) {
-        return fetch(self.login, {
+        return fetch(self.loginUrl, {
             method: 'post',
             credentials: "same-origin",
-            body: JSON.stringify({username:username, password: password}),
+            body: JSON.stringify({username: username, password: password}),
             headers: {
                 'content-type': 'application/json'
+            }
+        })
+        .then(function(response) {
+            if(response.status == '500') {
+                alert('Login Failed: please check you fields and try again.');
+                return;
+            } else {
+                return response.json();
             }
         });
     }
 
     function logout() {
-        return fetch(self.logout, {
+        return fetch(self.logoutUrl, {
             method: 'post',
             credentials: "same-origin",
-
+            headers: {
+                'content-type': 'application/json'
+            }
         })
-            .then(function(response){
-                profile = "../login/login.template.client.html";
-                $(location).attr("href", );      
-            })
+        .then(function(response){
+            exit = "../login/login.template.client.html";
+            $(location).attr("href", exit);      
+        });
     }
 
     function updateUser(userId, user) {

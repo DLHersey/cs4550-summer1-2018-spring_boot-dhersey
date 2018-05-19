@@ -3,7 +3,6 @@ package com.example.myapp.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -45,7 +44,7 @@ public class UserService {
 		}
 		else {/* Username DOES NOT exist */
 			User nUser = createUser(user);
-			session.setAttribute("user", nUser); 
+			session.setAttribute("currentUser", nUser); 
 			return nUser;
 		}
 	}
@@ -56,13 +55,19 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public User login(@RequestBody User user, HttpSession session, HttpServletResponse response) {
-		Optional<User> data = repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User credentials, HttpSession session) {
+		Optional<User> data = repository.findUserByCredentials(credentials.getUsername(), credentials.getPassword());
 		if(data.isPresent()) {
-			session.setAttribute("userId", user.getId());
-			return user;
+			session.setAttribute("currentUser", data.get());
+			return data.get();
 		}
 		return null;
+	}
+	
+	
+	@PostMapping("/api/logout")
+	public void logout(@RequestBody HttpSession session, HttpServletResponse response) {
+			session.invalidate();
 	}
 	
 	@GetMapping("/api/user/{userId}")
