@@ -1,11 +1,13 @@
 package com.example.myapp.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,11 +48,23 @@ public class CourseService {
 	
 	//UPDATE
 	@PutMapping("/api/course")
-	public Course updateCourse(@RequestBody Course course) {
+	public Course updateCourse(@RequestBody Course course, HttpServletResponse response) {
+		Optional<Course> data = repository.findById(course.getId());
+		if(data.isPresent()) {
+			Course nCourse = data.get();
+			nCourse.setTitle(course.getTitle());
+			Date date = new Date();
+			nCourse.setModified(date);
+			return nCourse;
+		}
+		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		return null;
 	}
 	
 	//DELETE
-
+	@DeleteMapping("/api/course/{cid}")
+	public void deleteCourse(@PathVariable int cid) {
+		repository.deleteById(cid);
+	}
 
 }
