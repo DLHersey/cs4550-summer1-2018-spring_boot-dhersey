@@ -26,7 +26,9 @@ import com.example.myapp.repositories.ModuleRepository;
 public class LessonService {
 	@Autowired
 	LessonRepository repository;
+	@Autowired
 	ModuleRepository mRepository;
+	@Autowired
 	CourseRepository cRepository;
 	
 	//CREATE

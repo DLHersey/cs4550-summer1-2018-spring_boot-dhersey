@@ -24,6 +24,7 @@ import com.example.myapp.repositories.ModuleRepository;
 public class ModuleService {
 	@Autowired
 	ModuleRepository repository;
+	@Autowired
 	CourseRepository cRepository;
 	
 	//CREATE
@@ -57,16 +58,17 @@ public class ModuleService {
 		return null;
 	}
 	//findAllModulesForCourse
-	@GetMapping("/api/course/{cid}/module")
-	public List<Module> findAllModulesForCourse(@PathVariable int cid, HttpServletResponse response) {
-		Optional<List<Module>> data = repository.findAllModulesForCourse(cid);
+	@GetMapping("/api/course/{courseId}/module")
+	public List<Module> findAllModulesForCourse(
+			@PathVariable("courseId") int courseId) {
+		Optional<Course> data = cRepository.findById(courseId);
 		if(data.isPresent()) {
-			List<Module> modules = data.get();
-			return modules;
+			Course course = data.get();
+			return course.getModules();
 		}
-		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		return null;
 	}
+
 	
 	//UPDATE
 	@PutMapping("/api/module/{id}")
