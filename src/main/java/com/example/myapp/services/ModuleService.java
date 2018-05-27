@@ -79,6 +79,7 @@ public class ModuleService {
 			nModule.setTitle(module.getTitle());
 			nModule.setCourse(module.getCourse());
 			nModule.setLessons(module.getLessons());
+			repository.save(nModule);
 			return nModule;
 		}
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
