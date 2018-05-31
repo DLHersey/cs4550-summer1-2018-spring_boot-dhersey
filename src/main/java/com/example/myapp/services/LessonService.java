@@ -21,8 +21,8 @@ import com.example.myapp.repositories.CourseRepository;
 import com.example.myapp.repositories.LessonRepository;
 import com.example.myapp.repositories.ModuleRepository;
 
-@RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
 public class LessonService {
 	@Autowired
 	LessonRepository repository;
