@@ -82,6 +82,15 @@ public class WidgetService {
 		return null;
 	}
 	
+	//SAVE
+	@PostMapping("/api/widget/save")
+	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
+			for(Widget widget: widgets) {
+				repository.save(widget);
+			}
+	}
+	
+	
 	//DELETE
 	@DeleteMapping("/api/widget/{wid}")
 	public void deleteWidget(@PathVariable int wid) {
