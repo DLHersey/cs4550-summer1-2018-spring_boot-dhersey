@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.myapp.models.Course;
 import com.example.myapp.models.Lesson;
+import com.example.myapp.models.Module;
 import com.example.myapp.models.Widget;
 import com.example.myapp.repositories.LessonRepository;
 import com.example.myapp.repositories.WidgetRepository;
@@ -54,6 +56,17 @@ public class WidgetService {
 			return widget;
 		}
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		return null;
+	}
+	//findAllWidgetsForLesson
+	@GetMapping("/api/lesson/{lessonId}/widget")
+	public List<Widget> findAllModulesForCourse(
+			@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lRepository.findById(lessonId);
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			return lesson.getWidgets();
+		}
 		return null;
 	}
 	

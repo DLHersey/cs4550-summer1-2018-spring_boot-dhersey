@@ -36,4 +36,10 @@ public class Lesson {
 	public void setModule(Module module) {
 		this.module = module;
 	}
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
+	}
 }

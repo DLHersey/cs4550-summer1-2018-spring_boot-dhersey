@@ -59,8 +59,9 @@ public class LessonService {
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		return null;
 	}
-	@GetMapping("/api/course/{cid}/module/{mid}/lesson")
-	public List<Lesson> findAllLessonssForModule(@PathVariable int cid, @PathVariable int mid, HttpServletResponse response) {
+	//lessonss -> is it a problem?
+	@GetMapping("/api/module/{mid}/lesson")
+	public List<Lesson> findAllLessonssForModule(@PathVariable("mid") int mid, HttpServletResponse response) {
 		Optional<List<Lesson>> data = repository.findAllLessonsForModule(mid);
 		if(data.isPresent()) {
 			List<Lesson> lessons = data.get();
